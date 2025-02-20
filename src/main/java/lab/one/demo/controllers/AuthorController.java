@@ -1,25 +1,37 @@
 package lab.one.demo.controllers;
 
 
-import lab.one.demo.docker.entity.Author;
-import lab.one.demo.repository.AuthorRepository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import lab.one.demo.dtos.AuthorDto;
+import lab.one.demo.services.AuthorService;
+import org.apache.coyote.Response;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/authors")
 public class AuthorController {
-    private final AuthorRepository repository;
 
-    public AuthorController(AuthorRepository repository) {
-        this.repository = repository;
-    }
+    @Autowired
+    private AuthorService service;
 
     @GetMapping
-    public List<Author> findAll(){
-        return repository.findAll();
+    public ResponseEntity<List<AuthorDto>> getAllAuthors(){
+        List<AuthorDto> authors = service.getAllAuthors();
+        return ResponseEntity.ok(authors);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<AuthorDto> getAuthorById(Long id){
+        AuthorDto author = service.getAuthorById(id);
+        return ResponseEntity.ok(author);
+    }
+
+    @PostMapping
+    public ResponseEntity<AuthorDto> createAuthor(@RequestBody AuthorDto authorDto){
+        AuthorDto createdAuthor = service.createAuthor(authorDto);
+        return ResponseEntity.ok(createdAuthor);
     }
 }
