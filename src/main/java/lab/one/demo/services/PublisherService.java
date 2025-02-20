@@ -33,7 +33,9 @@ public class PublisherService {
         return publisherDtos;
     }
 
-    public PublisherDto createPublisher(){
-
+    public PublisherDto createPublisher(PublisherDto publisherDto){
+    Publisher publisher = mapToEntity(publisherDto);
+    Publisher savedPublisher =publisherRepository.save(publisher);
+    return mapToDto(savedPublisher);
     }
 }

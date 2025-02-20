@@ -19,10 +19,8 @@ public class Category {
     @ManyToMany(mappedBy = "categories")
     private List<Book> books;
 
-    public Category(Long id, String name, List<Book> books) {
-        this.id = id;
+    public Category(String name) {
         this.name = name;
-        this.books = books;
     }
 
     public Category() {

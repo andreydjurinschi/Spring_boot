@@ -3,9 +3,8 @@ package lab.one.demo.controllers;
 import lab.one.demo.dtos.PublisherDto;
 import lab.one.demo.services.PublisherService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,10 +16,16 @@ public class PublisherController {
     private PublisherService service;
 
     @GetMapping
-    public List<PublisherDto> getAll(){
+    public ResponseEntity<List<PublisherDto>> getAll(){
 
         List<PublisherDto> publishers = service.allPublishers();
-        return publishers;
+        return ResponseEntity.ok(publishers);
+    }
+
+    @PostMapping
+    public ResponseEntity<PublisherDto> createPublisher(@RequestBody PublisherDto publisherDto){
+        PublisherDto createdPublisher = service.createPublisher(publisherDto);
+        return ResponseEntity.ok(createdPublisher);
     }
 
 
