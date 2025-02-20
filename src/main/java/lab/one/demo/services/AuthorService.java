@@ -50,8 +50,13 @@ public class AuthorService {
         Author author = authorRepository.findById(id).orElseThrow(() -> new RuntimeException("Cannot find author"));
         author.setName(authorDto.getName());
         author.setSurname(authorDto.getSurname());
-
+        author.setBooks(authorDto.getBooksIds());
     }*/
+
+    public void deleteAuthor(Long id){
+        Author author = authorRepository.findById(id).orElseThrow(() -> new RuntimeException("Cannot"));
+        authorRepository.delete(author);
+    }
 
 
 

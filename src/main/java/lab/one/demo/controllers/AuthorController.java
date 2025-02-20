@@ -34,4 +34,11 @@ public class AuthorController {
         AuthorDto createdAuthor = service.createAuthor(authorDto);
         return ResponseEntity.ok(createdAuthor);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteAuthor(@PathVariable Long id){
+        service.deleteAuthor(id);
+        return ResponseEntity.noContent().build();
+
+    }
 }

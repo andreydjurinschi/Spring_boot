@@ -19,10 +19,9 @@ public class PublisherDto {
 
     private List<Long> booksIds;
 
-    public PublisherDto(Long id, String name, List<Long> books) {
+    public PublisherDto(Long id, String name) {
         this.id = id;
         this.name = name;
-        this.booksIds = books;
     }
 
     public PublisherDto() {

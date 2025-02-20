@@ -21,10 +21,8 @@ public class Publisher {
     @OneToMany(mappedBy = "publisher", cascade = CascadeType.ALL)
     private List<Book> books;
 
-    public Publisher(Long id, String name, List<Book> books) {
-        this.id = id;
+    public Publisher(String name) {
         this.name = name;
-        this.books = books;
     }
 
     public Publisher() {

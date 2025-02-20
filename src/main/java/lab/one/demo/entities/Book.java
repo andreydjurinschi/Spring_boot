@@ -36,8 +36,7 @@ public class Book {
     private List<Category> categories;
 
 
-    public Book(Long id, String title, Author author, Publisher publisher, List<Category> categories) {
-        this.id = id;
+    public Book(String title, Author author, Publisher publisher, List<Category> categories) {
         this.title = title;
         this.author = author;
         this.publisher = publisher;
