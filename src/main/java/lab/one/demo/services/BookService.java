@@ -80,6 +80,22 @@ public class BookService {
         bookRepository.delete(book);
     }
 
+    public BookDto updateBook(Long id, BookDto dto){
+        Author author = authorRepository.findById(dto.getAuthorId()).orElseThrow(() -> new RuntimeException(" "));
+        Publisher publisher = publisherRepository.findById(dto.getPublisherId()).orElseThrow(() -> new RuntimeException(" "));
+        List<Category> categories = categoryRepository.findAllById(dto.getCategoryIds());
+        Book book = bookRepository.findById(id).orElseThrow(() -> new RuntimeException(" "));
+
+        book.setTitle(dto.getTitle());
+        book.setAuthor(author);
+        book.setPublisher(publisher);
+        if(!categories.isEmpty()){
+            book.setCategories(categories);
+        }
+        Book updated = bookRepository.save(book);
+        return mapToDto(updated);
+    }
+
 
 
 

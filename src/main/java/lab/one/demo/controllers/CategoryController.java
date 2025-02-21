@@ -30,4 +30,19 @@ public class CategoryController {
         CategoryDto cat = service.createCategory(categoryDto);
         return ResponseEntity.ok(cat);
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<CategoryDto> updateCategory(@PathVariable Long id, @RequestBody CategoryDto categoryDto){
+
+        CategoryDto category = service.updateCategory(id, categoryDto);
+        return ResponseEntity.ok(category);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<CategoryDto> getCategoryById(@PathVariable Long id){
+        CategoryDto category = service.getCategoryById(id);
+        return ResponseEntity.ok(category);
+    }
+
 }
+
