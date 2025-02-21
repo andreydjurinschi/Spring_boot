@@ -7,6 +7,7 @@ import lab.one.demo.entities.Book;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -17,11 +18,12 @@ public class PublisherDto {
 
     private String name;
 
-    private List<Long> booksIds;
+    private List<Long> booksIds = new ArrayList<>();
 
-    public PublisherDto(Long id, String name) {
+    public PublisherDto(Long id, String name, List<Long> ids) {
         this.id = id;
         this.name = name;
+        this.booksIds = ids;
     }
 
     public PublisherDto() {

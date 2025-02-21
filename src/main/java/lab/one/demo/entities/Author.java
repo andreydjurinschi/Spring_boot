@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Setter
@@ -23,8 +24,8 @@ public class Author {
 
     private String surname;
 
-    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    public List<Book> books;
+    @OneToMany(mappedBy = "author")
+    public List<Book> books = new ArrayList<>();
 
     public Author() {
     }
@@ -32,6 +33,7 @@ public class Author {
     public Author(String name, String surname) {
         this.name = name;
         this.surname = surname;
+        this.books = new ArrayList<>();
     }
 
     @Override

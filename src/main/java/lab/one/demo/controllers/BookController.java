@@ -15,6 +15,10 @@ public class BookController {
     @Autowired
     private BookService service;
 
+    public BookController(BookService service) {
+        this.service = service;
+    }
+
     @GetMapping
     public ResponseEntity<List<BookDto>> getAllBooks(){
         List<BookDto> books = service.getAllBooks();

@@ -3,6 +3,7 @@ package lab.one.demo.dtos;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Setter
@@ -14,15 +15,16 @@ public class AuthorDto {
 
     private String surname;
 
-    private List<Long> booksIds;
+    private List<Long> booksIds = new ArrayList<>();
 
     public AuthorDto() {
     }
 
-    public AuthorDto(Long id, String name, String surname) {
+    public AuthorDto(Long id, String name, String surname, List<Long> ids) {
         this.id = id;
         this.name = name;
         this.surname = surname;
+        this.booksIds = ids;
     }
 
     @Override

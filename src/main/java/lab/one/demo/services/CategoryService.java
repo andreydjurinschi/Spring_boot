@@ -1,5 +1,6 @@
 package lab.one.demo.services;
 import lab.one.demo.dtos.CategoryDto;
+import lab.one.demo.entities.Book;
 import lab.one.demo.entities.Category;
 import lab.one.demo.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +16,19 @@ public class CategoryService {
     private CategoryRepository categoryRepository;
 
     private CategoryDto mapToDto(Category category){
-        return new CategoryDto(category.getId(), category.getName());
+        return new CategoryDto(category.getId(), category.getName(), getIds(category));
     }
     private Category mapToEntity(CategoryDto categoryDto){
         return new Category(categoryDto.getName());
+    }
+
+    private List<Long> getIds(Category category){
+        List<Book> books = category.getBooks();
+        List<Long> ids = new ArrayList<>();
+        for(var book : books){
+            ids.add(book.getId());
+        }
+        return ids;
     }
 
     public List<CategoryDto> getAll(){

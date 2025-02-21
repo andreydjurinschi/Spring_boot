@@ -41,4 +41,10 @@ public class AuthorController {
         return ResponseEntity.noContent().build();
 
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<AuthorDto> updateAuthor(@PathVariable Long id, @RequestBody AuthorDto authorDto){
+        AuthorDto updated = service.updateAuthor(id, authorDto);
+        return ResponseEntity.ok(updated);
+    }
 }

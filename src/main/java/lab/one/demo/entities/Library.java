@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -18,8 +19,8 @@ public class Library {
 
     private String name;
 
-    @ElementCollection
-    private List<Long> books;
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<Long> books = new ArrayList<>();
 
     public Library() {
     }
