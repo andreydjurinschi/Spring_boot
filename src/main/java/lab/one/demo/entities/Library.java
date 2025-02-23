@@ -25,8 +25,7 @@ public class Library {
     public Library() {
     }
 
-    public Library(Long id, String name, List<Long> books) {
-        this.id = id;
+    public Library(String name, List<Long> books) {
         this.name = name;
         this.books = books;
     }
