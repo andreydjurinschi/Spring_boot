@@ -24,10 +24,10 @@ public class LibraryController {
         return ResponseEntity.ok(libraryService.getAllLibraries());
     }
 
-    /*@GetMapping("/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<LibraryDto> getLibraryById(@PathVariable Long id) {
         return ResponseEntity.ok(libraryService.getLibraryById(id));
-    }*/
+    }
 
     @PostMapping
     public ResponseEntity<LibraryDto> createLibrary(@RequestBody LibraryDto libraryDto) {
@@ -40,9 +40,9 @@ public class LibraryController {
     }
 
 
-    /* @DeleteMapping("/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteLibrary(@PathVariable Long id) {
         libraryService.deleteLibrary(id);
         return ResponseEntity.noContent().build();
-    }*/
+    }
 }

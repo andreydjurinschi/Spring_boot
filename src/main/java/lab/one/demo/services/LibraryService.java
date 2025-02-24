@@ -48,6 +48,18 @@ public class LibraryService {
         return mapToDto(saved);
     }
 
+    public LibraryDto getLibraryById(Long id){
+        Library library = libraryRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Cannot find this library"));
+        return mapToDto(library);
+    }
+
+    public void deleteLibrary(Long id){
+        Library library = libraryRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Cannot find this library"));
+        libraryRepository.delete(library);
+    }
+
     public LibraryDto updateLibrary(Long id, LibraryDto dto){
         Library library = libraryRepository.findById(id).orElseThrow(() -> new RuntimeException(""));
         List<Long> books = getBookIds(mapToEntity(dto));

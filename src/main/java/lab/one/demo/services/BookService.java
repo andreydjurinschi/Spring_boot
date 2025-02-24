@@ -53,6 +53,13 @@ public class BookService {
         return dtos;
     }
 
+    public BookDto getBookById(Long id){
+        Book book = bookRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Cannot find this book"));
+
+        return mapToDto(book);
+    }
+
     public BookDto createBook(BookDto dto){
         Author author = authorRepository.findById(dto.getAuthorId()).orElseThrow(() -> new RuntimeException(""));
         Publisher publisher = publisherRepository.findById(dto.getPublisherId()).orElseThrow(() -> new RuntimeException(""));
